@@ -9,7 +9,7 @@ import (
 
 	"github.com/badoux/checkmail"
 	"github.com/jinzhu/gorm"
-	
+
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -21,7 +21,7 @@ type User struct {
 	CreatedAt time.Time `gorm:"default:CURRENT_TIMESTAMP" json:"created_at"`
 	UpdatedAt time.Time `gorm:"default:CURRENT_TIMESTAMP" json:"updated_at"`
 }
-
+//
 func Hash(password string) ([]byte, error) {
 	return bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 }
