@@ -9,10 +9,10 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
-	"github.com/makarimachmad/levelup/api/auth"
-	"github.com/makarimachmad/levelup/api/models"
-	"github.com/makarimachmad/levelup/api/responses"
-	"github.com/makarimachmad/levelup/api/utils/formaterror"
+	"levelup/api/auth"
+	"levelup/api/models"
+	"levelup/api/responses"
+	"levelup/api/utils/formaterror"
 )
 
 func (server *Server) CreateUser(w http.ResponseWriter, r *http.Request) {

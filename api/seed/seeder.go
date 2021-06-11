@@ -4,7 +4,8 @@ import (
 	"log"
 
 	"github.com/jinzhu/gorm"
-	"github.com/makarimachmad/levelup/api/models"
+	
+	"levelup/api/models"
 )
 
 var users = []models.User{

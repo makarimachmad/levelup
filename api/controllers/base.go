@@ -10,7 +10,7 @@ import (
 
 	_ "github.com/jinzhu/gorm/dialects/postgres" //postgres database driver
 
-	"github.com/makarimachmad/levelup/api/models"
+	"levelup/api/models"
 )
 
 type Server struct {

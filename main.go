@@ -1,6 +1,6 @@
 package main
 
-import "github.com/makarimachmad/levelup/api"
+import "levelup/api"
 
 func main() {
 	api.Run()

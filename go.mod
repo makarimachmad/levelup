@@ -1,4 +1,4 @@
-module github.com/makarimachmad/levelup
+module levelup
 
 go 1.16
 

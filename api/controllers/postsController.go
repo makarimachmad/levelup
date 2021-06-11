@@ -10,10 +10,11 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
-	"github.com/makarimachmad/levelup/api/auth"
-	"github.com/makarimachmad/levelup/api/models"
-	"github.com/makarimachmad/levelup/api/responses"
-	"github.com/makarimachmad/levelup/api/utils/formaterror"
+	
+	"levelup/api/auth"
+	"levelup/api/models"
+	"levelup/api/responses"
+	"levelup/api/utils/formaterror"
 )
 
 func (server *Server) CreatePost(w http.ResponseWriter, r *http.Request) {
@@ -98,7 +99,7 @@ func (server *Server) UpdatePost(w http.ResponseWriter, r *http.Request) {
 	//CHeck if the auth token is valid and  get the user id from it
 	uid, err := auth.ExtractTokenID(r)
 	if err != nil {
-		responses.ERROR(w, http.StatusUnauthorized, errors.New("Unauthorized"))
+		responses.ERROR(w, http.StatusUnauthorized, errors.New("unauthorized"))
 		return
 	}
 
@@ -106,13 +107,13 @@ func (server *Server) UpdatePost(w http.ResponseWriter, r *http.Request) {
 	post := models.Post{}
 	err = server.DB.Debug().Model(models.Post{}).Where("id = ?", pid).Take(&post).Error
 	if err != nil {
-		responses.ERROR(w, http.StatusNotFound, errors.New("Post not found"))
+		responses.ERROR(w, http.StatusNotFound, errors.New("post not found"))
 		return
 	}
 
 	// If a user attempt to update a post not belonging to him
 	if uid != post.AuthorID {
-		responses.ERROR(w, http.StatusUnauthorized, errors.New("Unauthorized"))
+		responses.ERROR(w, http.StatusUnauthorized, errors.New("unauthorized"))
 		return
 	}
 	// Read the data posted
@@ -132,7 +133,7 @@ func (server *Server) UpdatePost(w http.ResponseWriter, r *http.Request) {
 
 	//Also check if the request user id is equal to the one gotten from token
 	if uid != postUpdate.AuthorID {
-		responses.ERROR(w, http.StatusUnauthorized, errors.New("Unauthorized"))
+		responses.ERROR(w, http.StatusUnauthorized, errors.New("unauthorized"))
 		return
 	}
 
@@ -169,7 +170,7 @@ func (server *Server) DeletePost(w http.ResponseWriter, r *http.Request) {
 	// Is this user authenticated?
 	uid, err := auth.ExtractTokenID(r)
 	if err != nil {
-		responses.ERROR(w, http.StatusUnauthorized, errors.New("Unauthorized"))
+		responses.ERROR(w, http.StatusUnauthorized, errors.New("unauthorized"))
 		return
 	}
 
@@ -177,13 +178,13 @@ func (server *Server) DeletePost(w http.ResponseWriter, r *http.Request) {
 	post := models.Post{}
 	err = server.DB.Debug().Model(models.Post{}).Where("id = ?", pid).Take(&post).Error
 	if err != nil {
-		responses.ERROR(w, http.StatusNotFound, errors.New("Unauthorized"))
+		responses.ERROR(w, http.StatusNotFound, errors.New("unauthorized"))
 		return
 	}
 
 	// Is the authenticated user, the owner of this post?
 	if uid != post.AuthorID {
-		responses.ERROR(w, http.StatusUnauthorized, errors.New("Unauthorized"))
+		responses.ERROR(w, http.StatusUnauthorized, errors.New("unauthorized"))
 		return
 	}
 	_, err = post.DeleteAPost(server.DB, pid, uid)

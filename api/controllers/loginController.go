@@ -5,10 +5,10 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/makarimachmad/levelup/api/auth"
-	"github.com/makarimachmad/levelup/api/models"
-	"github.com/makarimachmad/levelup/api/responses"
-	"github.com/makarimachmad/levelup/api/utils/formaterror"
+	"levelup/api/auth"
+	"levelup/api/models"
+	"levelup/api/responses"
+	"levelup/api/utils/formaterror"
 	
 	"golang.org/x/crypto/bcrypt"
 )

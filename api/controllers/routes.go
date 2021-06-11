@@ -1,6 +1,6 @@
 package controllers
 
-import "github.com/makarimachmad/levelup/api/middlewares"
+import "levelup/api/middlewares"
 
 func (s *Server) initializeRoutes() {
 

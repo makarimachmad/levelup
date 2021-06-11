@@ -4,9 +4,9 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/makarimachmad/levelup/api/auth"
+	"levelup/api/auth"
 	
-	"github.com/makarimachmad/levelup/api/responses"
+	"levelup/api/responses"
 )
 
 func SetMiddlewareJSON(next http.HandlerFunc) http.HandlerFunc {
